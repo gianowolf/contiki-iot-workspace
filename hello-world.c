@@ -16,7 +16,7 @@ PROCESS_THREAD(hello_world_process, ev, data)
 {
   PROCESS_BEGIN();
 
-  printf("Goodbye, world\n");
+  printf("Hello darkness, say goodbye\n");
   
   PROCESS_END();
 }
