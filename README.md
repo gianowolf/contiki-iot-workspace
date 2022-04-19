@@ -8,10 +8,10 @@
 
 ## Links
 
-- <a ref="https://github.com/contiki-ng/contiki-ng/wiki">Contiki Documentation</a>
-- <a ref="https://github.com/contiki-os/contiki">Contiki Repository</a>
-- <a ref="https://github.com/contiki-ng/contiki-ng/wiki/Docker">Contiki Docker Setup</a>
-- <a ref="http://www.contiki-os.org/">Contiki Website</a>
-- <a ref="https://www.thingsquare.com/blog/articles/iot-for-beginners/">Thingsquare</a>
-- <a ref="https://www.thingsquare.com/blog/">Thingsquare Blog</a>
-- <a ref="https://biblioteca.mincyt.gob.ar/">Biblioteca Electronica de Ciencia y Tecnologia</a>
+- <a href="https://github.com/contiki-ng/contiki-ng/wiki">Contiki Documentation</a>
+- <a href="https://github.com/contiki-os/contiki">Contiki Repository</a>
+- <a href="https://github.com/contiki-ng/contiki-ng/wiki/Docker">Contiki Docker Setup</a>
+- <a href="http://www.contiki-os.org/">Contiki Website</a>
+- <a href="https://www.thingsquare.com/blog/articles/iot-for-beginners/">Thingsquare</a>
+- <a href="https://www.thingsquare.com/blog/">Thingsquare Blog</a>
+- <a href="https://biblioteca.mincyt.gob.ar/">Biblioteca Electronica de Ciencia y Tecnologia</a>
