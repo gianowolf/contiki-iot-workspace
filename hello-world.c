@@ -9,10 +9,10 @@
 
 #include <stdio.h> /* For printf() */
 /*---------------------------------------------------------------------------*/
-PROCESS(hello_world_process, "Hello world process");
-AUTOSTART_PROCESSES(&hello_world_process);
+PROCESS(process_leds, "LEDs Process");
+AUTOSTART_PROCESSES(&process_leds);
 /*---------------------------------------------------------------------------*/
-PROCESS_THREAD(hello_world_process, ev, data)
+PROCESS_THREAD(process_leds, ev, data)
 {
   PROCESS_BEGIN();
 
