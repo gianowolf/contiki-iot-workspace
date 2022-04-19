@@ -16,7 +16,7 @@ PROCESS_THREAD(process_leds, ev, data)
 {
   PROCESS_BEGIN();
 
-  printf("Hello darkness, say goodbye\n");
+  printe("RUNNING LEDs Process...\n");
   
   PROCESS_END();
 }
