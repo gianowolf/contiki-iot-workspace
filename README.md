@@ -44,7 +44,9 @@ Generate a new ssh key
 
 ```sh
 mkdir ~/.ssh
+
 ssh-keygen -t ecdsa -b 521 -C "your@email"
+
 # Select path and paraphrase
 # default ~/.ssh/id_ecdsa
 # return to no paraphrase
