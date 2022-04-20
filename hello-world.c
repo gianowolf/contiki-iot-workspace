@@ -31,14 +31,15 @@ PROCESS_THREAD(process_leds, ev, data)
     static struct etimer et;
     printf("RUNNING LEDs Process...\n"); 
     
+    etimer_set(&et, CLOCK_SECOND);        /* SET: 1s */
+
     while(1)
     {
-      etimer_set(&et, CLOCK_SECOND);
-      PROCESS_WAIT_EVENT();
-      if (etimer_expired(&et))
+      PROCESS_WAIT_EVENT();                 /* WAIT EVENT */  
+      if (etimer_expired(&et))              /* IF Timer Expired */
       {
-        printf("timer expired\n");
-        etimer_reset(&et);
+        check_leds();                       /* Do Tasks */
+        etimer_reset(&et);                  /* Reset Timer */
       }
     }
   }
@@ -48,10 +49,10 @@ PROCESS_THREAD(process_leds, ev, data)
 PROCESS_THREAD(process_timer, ev, data)
 {
   PROCESS_BEGIN();
-
-  printf("RUNNING Timer Process...\n");
-  SENSORS_ACTIVATE(button_sensor);
-  
+  {
+    printf("RUNNING Timer Process...\n");
+    
+  }
   PROCESS_END();
 }
 /*---------------------------------------------------------------------------*/
