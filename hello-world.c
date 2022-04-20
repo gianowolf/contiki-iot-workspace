@@ -16,6 +16,9 @@
 /* Types */
 typedef unsigned char uint8;
 
+/* Functions */
+check_leds();
+
 /*---------------------------------------------------------------------------*/
 
 PROCESS(process_leds, "LEDs Process");
@@ -56,3 +59,8 @@ PROCESS_THREAD(process_timer, ev, data)
   PROCESS_END();
 }
 /*---------------------------------------------------------------------------*/
+
+check_leds()
+{
+  printf("Check Leds\n")
+}
