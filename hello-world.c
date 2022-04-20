@@ -26,9 +26,9 @@ AUTOSTART_PROCESSES(&process_leds, &process_timer);
 /*---------------------------------------------------------------------------*/
 PROCESS_THREAD(process_leds, ev, data)
 {
-  static struct etimer et;
-
   PROCESS_BEGIN();
+ 
+  static struct etimer et;
   printf("RUNNING LEDs Process...\n"); 
   
   while(1)
