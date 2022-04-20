@@ -39,9 +39,13 @@ PROCESS_THREAD(process_leds, ev, data)
 {
   PROCESS_BEGIN();
   {
-    uint8 counter_leds[3];
+    int counter_leds[3];
     f_leds_init(&counter_leds);
 
+    counter_leds[0] = 3;
+    counter_leds[1] = 5;
+    counter_leds[2] = 7;
+    
     static struct etimer et;
     printf("RUNNING LEDs Process...\n"); 
     
