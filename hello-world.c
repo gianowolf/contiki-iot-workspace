@@ -5,9 +5,16 @@
  *        Gian Franco Lasala 
  */
 
+/* Drivers */
 #include "contiki.h"
+#include "dev/leds.h"
+#include "dev/button-sensor.h"
 
+/* Utils */
 #include <stdio.h> /* For printf() */
+
+/* Types */
+typedef unsigned char uint8;
 
 /*---------------------------------------------------------------------------*/
 
@@ -31,6 +38,7 @@ PROCESS_THREAD(process_timer, ev, data)
   PROCESS_BEGIN();
 
   printf("RUNNING Timer Process...\n");
+  SENSORS_ACTIVATE(button_sensor);
   
   PROCESS_END();
 }
