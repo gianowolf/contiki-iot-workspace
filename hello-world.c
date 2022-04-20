@@ -65,7 +65,6 @@ PROCESS_THREAD(process_timer, ev, data)
   PROCESS_BEGIN();
   {
     printf("RUNNING Timer Process...\n");
-    printf(" Contadores: %d [B], %d [R] , %d [G]",--counter[0],--counter[1],--counter[2]);    
   }
   PROCESS_END();
 }
@@ -83,7 +82,7 @@ int f_leds_init(int *counter)
 int f_leds_check()
 {
   printf("Check Leds\n");
-
+  printf(" Contadores: %d [B], %d [R] , %d [G]\n",--counter[0],--counter[1],--counter[2]);    
   return 0;
 }
 
