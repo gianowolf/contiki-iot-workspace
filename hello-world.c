@@ -22,8 +22,8 @@
 typedef unsigned char uint8;
 
 /* Functions */
-int f_leds_init();
-int f_leds_check();
+int f_leds_init(int* counter);
+int f_leds_check(int* counter);
 
 /* Shareds */
 
@@ -52,7 +52,7 @@ PROCESS_THREAD(process_leds, ev, data)
       PROCESS_WAIT_EVENT();                 /* WAIT EVENT */  
       if (etimer_expired(&et))              /* IF Timer Expired */
       {
-        f_leds_check();                       /* Do Tasks */
+        f_leds_check(&counter_leds);                       /* Do Tasks */
         etimer_reset(&et);                  /* Reset Timer */
       }
     }
@@ -79,7 +79,7 @@ int f_leds_init(int *counter)
   return 0;
 }
 
-int f_leds_check()
+int f_leds_check(int *counter)
 {
   printf("Check Leds\n");
   printf(" Contadores: %d [B], %d [R] , %d [G]\n",--counter[0],--counter[1],--counter[2]);    
