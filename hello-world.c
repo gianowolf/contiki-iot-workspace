@@ -17,12 +17,10 @@
 typedef unsigned char uint8;
 
 /* Functions */
-int leds_init();
-int leds_check();
-
+int f_leds_init();
+int f_leds_check();
 
 /* Shareds */
-
 
 /*---------------------------------------------------------------------------*/
 
@@ -37,7 +35,7 @@ PROCESS_THREAD(process_leds, ev, data)
   PROCESS_BEGIN();
   {
     int counter_leds[3];
-    leds_init(&counter_leds);
+    f_leds_init(&counter_leds);
 
     static struct etimer et;
     printf("RUNNING LEDs Process...\n"); 
@@ -49,7 +47,7 @@ PROCESS_THREAD(process_leds, ev, data)
       PROCESS_WAIT_EVENT();                 /* WAIT EVENT */  
       if (etimer_expired(&et))              /* IF Timer Expired */
       {
-        leds_check();                       /* Do Tasks */
+        f_leds_check();                       /* Do Tasks */
         etimer_reset(&et);                  /* Reset Timer */
       }
     }
@@ -68,13 +66,13 @@ PROCESS_THREAD(process_timer, ev, data)
 }
 /*---------------------------------------------------------------------------*/
 
-int leds_init(int *counter)
+int f_leds_init(int *counter)
 {
 
   return 0;
 }
 
-int leds_check()
+int f_leds_check()
 {
   printf("Check Leds\n");
 
