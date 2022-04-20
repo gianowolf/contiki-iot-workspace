@@ -29,31 +29,19 @@ PROCESS_THREAD(process_leds, ev, data)
   static struct etimer et;
 
   PROCESS_BEGIN();
-  
- 
-
-
-  printf("RUNNING LEDs Process...\n");
+  printf("RUNNING LEDs Process...\n"); 
   
   while(1)
   {
-    static struct etimer et;
-    
-    PROCESS_BEGIN();
-    
-    while(1) {
-        etimer_set(&et, CLOCK_SECOND);
-        PROCESS_WAIT_EVENT();
-        if (etimer_expired(&et)) {
-            printf("timer expired\n");
-            etimer_reset(&et);
-        }
+    etimer_set(&et, CLOCK_SECOND);
+    PROCESS_WAIT_EVENT();
+    if (etimer_expired(&et))
+    {
+      printf("timer expired\n");
+      etimer_reset(&et);
     }
-    
-    PROCESS_END();
   }
   
-
   PROCESS_END();
 }
 
