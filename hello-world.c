@@ -14,7 +14,7 @@
 PROCESS(process_leds, "LEDs Process");
 PROCESS(process_timer, "Timer Process");
 
-AUTOSTART_PROCESSES(&process_leds);
+AUTOSTART_PROCESSES(&process_leds, &process_timer);
 
 /*---------------------------------------------------------------------------*/
 PROCESS_THREAD(process_leds, ev, data)
