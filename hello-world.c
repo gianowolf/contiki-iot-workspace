@@ -37,11 +37,20 @@ PROCESS_THREAD(process_leds, ev, data)
   
   while(1)
   {
-    etimer_set(&et, CLOCK_SECOND);
-    PROCESS_WAIT_EVENT();
-    if(etimer_expired(&et))
-      printf("TIC");
-    etimer_reset(&et);
+    static struct etimer et;
+    
+    PROCESS_BEGIN();
+    
+    while(1) {
+        etimer_set(&et, CLOCK_SECOND);
+        PROCESS_WAIT_EVENT();
+        if (etimer_expired(&et)) {
+            printf("timer expired\n");
+            etimer_reset(&et);
+        }
+    }
+    
+    PROCESS_END();
   }
   
 
