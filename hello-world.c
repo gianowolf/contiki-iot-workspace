@@ -10,6 +10,11 @@
 #include "dev/leds.h"
 #include "dev/button-sensor.h"
 
+/* Values */
+#define TIME_BLUE  3
+#define TIME_RED   5
+#define TIME_GREEN 7
+
 /* Utils */
 #include <stdio.h> /* For printf() */
 
@@ -60,7 +65,7 @@ PROCESS_THREAD(process_timer, ev, data)
   PROCESS_BEGIN();
   {
     printf("RUNNING Timer Process...\n");
-    
+    printf(" Contadores: %d [B], %d [R] , %d [G]",--counter[0],--counter[1],--counter[2]);    
   }
   PROCESS_END();
 }
@@ -68,6 +73,9 @@ PROCESS_THREAD(process_timer, ev, data)
 
 int f_leds_init(int *counter)
 {
+  counter[0] = TIME_BLUE;
+  counter[1] = TIME_RED;
+  counter[2] = TIME_GREEN;
 
   return 0;
 }
