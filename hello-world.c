@@ -27,9 +27,22 @@ AUTOSTART_PROCESSES(&process_leds, &process_timer);
 PROCESS_THREAD(process_leds, ev, data)
 {
   PROCESS_BEGIN();
+  
+  static struct etimer et;
+
 
   printf("RUNNING LEDs Process...\n");
   
+  while(1)
+  {
+    etimer_set(&et, CLOCK_SECOND);
+    PROCESS_WAIT_EVENT();
+    if(etimer_expired(&et))
+      printf("TIC");
+    etimer_reset(&et);
+  }
+  
+
   PROCESS_END();
 }
 
