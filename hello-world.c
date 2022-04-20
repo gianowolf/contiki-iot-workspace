@@ -22,8 +22,8 @@
 typedef unsigned char uint8;
 
 /* Functions */
-int f_leds_init(int* counter);
-int f_leds_check(int* counter);
+uint8 f_leds_init(uint8* counter);
+uint8 f_leds_check(uint8* counter);
 
 /* Shareds */
 
@@ -39,7 +39,7 @@ PROCESS_THREAD(process_leds, ev, data)
 {
   PROCESS_BEGIN();
   {
-    int counter_leds[3];
+    uint8 counter_leds[3];
     f_leds_init(&counter_leds);
 
     static struct etimer et;
@@ -70,7 +70,7 @@ PROCESS_THREAD(process_timer, ev, data)
 }
 /*---------------------------------------------------------------------------*/
 
-int f_leds_init(int *counter)
+uint8 f_leds_init(uint8 *counter)
 {
   counter[0] = TIME_BLUE;
   counter[1] = TIME_RED;
@@ -79,10 +79,10 @@ int f_leds_init(int *counter)
   return 0;
 }
 
-int f_leds_check(int *counter)
+uint8 f_leds_check(uint8 *counter)
 {
   printf("Check Leds\n");
-  printf(" Contadores: %d [B], %d [R] , %d [G]\n",--counter[0],--counter[1],--counter[2]);    
+  printf(" Contadores: %d [B], %d [R] , %d [G]\n",counter[0],counter[1],counter[2]);    
   return 0;
 }
 
