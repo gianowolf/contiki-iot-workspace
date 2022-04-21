@@ -37,14 +37,15 @@ AUTOSTART_PROCESSES(&process_leds, &process_timer);
 /*---------------------------------------------------------------------------*/
 PROCESS_THREAD(process_leds, ev, data)
 {
+  uint8 counter_leds[3] = {TIME_BLUE, TIME_RED, TIME_GREEN};
+
+  static struct etimer et;
+  printf("RUNNING LEDs Process...\n"); 
+  etimer_set(&et, CLOCK_SECOND);        /* SET TIMER 1.00 s */
+
   PROCESS_BEGIN();
   {
-    uint8 counter_leds[3] = {TIME_BLUE, TIME_RED, TIME_GREEN};
-    //f_leds_init(&counter_leds);
 
-    static struct etimer et;
-    printf("RUNNING LEDs Process...\n"); 
-    etimer_set(&et, CLOCK_SECOND);        /* SET TIMER 1.00 s */
 
     while(1)
     {
@@ -61,7 +62,7 @@ PROCESS_THREAD(process_leds, ev, data)
 					if(--counter_leds[1] == 0)
 					{
 						leds_toggle(LEDS_RED);
-						counter_leds[1] = TIME_BLUE;
+						counter_leds[1] = TIME_RED;
 					}
 
 					if(--counter_leds[2] == 0)
