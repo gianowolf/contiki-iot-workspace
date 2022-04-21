@@ -25,7 +25,7 @@ enum state{ enabled = 1, disabled = 0};
 
 /* Functions */
 uint8 f_leds_init(uint8* counter);
-uint8 f_leds_check(uint8* counter);
+uint8 f_leds_check();
 
 /* Shareds */
 
