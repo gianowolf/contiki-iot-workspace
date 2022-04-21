@@ -39,13 +39,9 @@ PROCESS_THREAD(process_leds, ev, data)
 {
   PROCESS_BEGIN();
   {
-    int counter_leds[3];
+    int counter_leds[3] = {TIME_BLUE, TIME_RED, TIME_GREEN};
     f_leds_init(&counter_leds);
 
-    counter_leds[0] = 3;
-    counter_leds[1] = 5;
-    counter_leds[2] = 7;
-    
     static struct etimer et;
     printf("RUNNING LEDs Process...\n"); 
     
@@ -53,11 +49,11 @@ PROCESS_THREAD(process_leds, ev, data)
 
     while(1)
     {
-      PROCESS_WAIT_EVENT();                 /* WAIT EVENT */  
-      if (etimer_expired(&et))              /* IF Timer Expired */
+      PROCESS_WAIT_EVENT();                /* WAIT EVENT */  
+      if (etimer_expired(&et))             /* IF Timer Expired */
       {
-        f_leds_check(&counter_leds);                       /* Do Tasks */
-        etimer_reset(&et);                  /* Reset Timer */
+        f_leds_check(&counter_leds);         /* Do Tasks */
+        etimer_reset(&et);                 /* Reset Timer */
       }
     }
   }
@@ -83,10 +79,29 @@ uint8 f_leds_init(uint8 *counter)
   return 0;
 }
 
-uint8 f_leds_check(uint8 *counter)
+uint8 f_leds_check(uint8 counter[3])
 {
   printf("Check Leds\n");
   printf(" Contadores: %d [B], %d [R] , %d [G]\n",counter[0],counter[1],counter[2]);    
+
+					if(--counters[0] == 0)
+					{
+						leds_toggle(LEDS_BLUE);
+						counters[0] = T_BLUE;
+					}
+				
+					if(--counters[1] == 0)
+					{
+						leds_toggle(LEDS_RED);
+						counters[1] = T_BLUE;
+					}
+
+					if(--counters[2] == 0)
+					{
+						leds_toggle(LEDS_GREEN);
+						counters[2] = T_GREEN;
+					}
+
   return 0;
 }
 
