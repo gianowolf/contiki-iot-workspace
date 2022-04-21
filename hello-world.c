@@ -53,7 +53,23 @@ PROCESS_THREAD(process_leds, ev, data)
       PROCESS_WAIT_EVENT();                /* WAIT EVENT */  
       if (etimer_expired(&et))             /* IF Timer Expired */
       {
-        f_leds_check(&counter_leds[0]);       /* Do Tasks */
+        	if(--counters[0] == 0)
+					{
+						leds_toggle(LEDS_BLUE);
+						counters[0] = TIME_BLUE;
+					}
+				
+					if(--counters[1] == 0)
+					{
+						leds_toggle(LEDS_RED);
+						counters[1] = TIME_BLUE;
+					}
+
+					if(--counters[2] == 0)
+					{
+						leds_toggle(LEDS_GREEN);
+						counters[2] = TIME_GREEN;
+					}
         etimer_reset(&et);                 /* Reset Timer */
       }
     }
@@ -76,23 +92,7 @@ uint8 f_leds_check(uint8* counters)
   printf("Check Leds\n");
   printf(" Contadores: %d [B], %d [R] , %d [G]\n",counters+1,counters+2,counters+3);    
 
-					if(--counters[0] == 0)
-					{
-						leds_toggle(LEDS_BLUE);
-						counters[0] = TIME_BLUE;
-					}
-				
-					if(--counters[1] == 0)
-					{
-						leds_toggle(LEDS_RED);
-						counters[1] = TIME_BLUE;
-					}
 
-					if(--counters[2] == 0)
-					{
-						leds_toggle(LEDS_GREEN);
-						counters[2] = TIME_GREEN;
-					}
 
   return 0;
 }
