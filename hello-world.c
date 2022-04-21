@@ -71,10 +71,10 @@ PROCESS_THREAD(process_timer, ev, data)
 }
 /*---------------------------------------------------------------------------*/
 
-uint8 f_leds_check(uint8* counter)
+uint8 f_leds_check(uint8* counters)
 {
   printf("Check Leds\n");
-  printf(" Contadores: %d [B], %d [R] , %d [G]\n",counter[0],counter[1],counter[2]);    
+  printf(" Contadores: %d [B], %d [R] , %d [G]\n",counters[0],counters[1],counters[2]);    
 
 					if(--counters[0] == 0)
 					{
