@@ -94,10 +94,10 @@ uint8 f_leds_check(uint8* counters)
     leds_toggle(LEDS_GREEN);
     counter_leds[2] = t_green;
   }
-    
-
-
-
   return 0;
 }
 
+rst_led(int i)
+{
+  printf(times[i]);
+}
