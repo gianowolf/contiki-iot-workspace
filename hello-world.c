@@ -53,22 +53,22 @@ PROCESS_THREAD(process_leds, ev, data)
       PROCESS_WAIT_EVENT();                /* WAIT EVENT */  
       if (etimer_expired(&et))             /* IF Timer Expired */
       {
-        	if(--counters[0] == 0)
+        	if(--counter_leds[0] == 0)
 					{
 						leds_toggle(LEDS_BLUE);
-						counters[0] = TIME_BLUE;
+						counter_leds[0] = TIME_BLUE;
 					}
 				
-					if(--counters[1] == 0)
+					if(--counter_leds[1] == 0)
 					{
 						leds_toggle(LEDS_RED);
-						counters[1] = TIME_BLUE;
+						counter_leds[1] = TIME_BLUE;
 					}
 
-					if(--counters[2] == 0)
+					if(--counter_leds[2] == 0)
 					{
 						leds_toggle(LEDS_GREEN);
-						counters[2] = TIME_GREEN;
+						counter_leds[2] = TIME_GREEN;
 					}
         etimer_reset(&et);                 /* Reset Timer */
       }
