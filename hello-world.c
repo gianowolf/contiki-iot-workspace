@@ -55,7 +55,7 @@ PROCESS_THREAD(process_leds, ev, data)
     if (etimer_expired(&et))             /* IF (Timer == 0) */
     {
       f_leds_check();                           /* DO */
-      printf(" Contadores: %d [B], %d [R] , %d [G]\n",counter_leds[0],counter_leds[1],counter_leds[2]);
+      printf("LEDs ENABLED | Timers Countdown: %d [B], %d [G] , %d [R]\n",counter_leds[0],counter_leds[2],counter_leds[1]);
       etimer_reset(&et);                 /* RST Timer */
     }
   }
