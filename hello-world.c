@@ -52,7 +52,7 @@ PROCESS_THREAD(process_leds, ev, data)
   while(1)
   {
     PROCESS_WAIT_EVENT();                /* WAIT */  
-    if (etimer_expired(&et))             /* IF (Timer == 0) */
+    if (etimer_expired(&et) && status_leds)             /* IF (Timer == 0) */
     {
       f_leds_check();                           /* DO */
       printf("LEDs ENABLED | Timers Countdown: %d [B], %d [G] , %d [R]\n",counter_leds[0],counter_leds[2],counter_leds[1]);
@@ -67,7 +67,15 @@ PROCESS_THREAD(process_timer, ev, data)
 {
   PROCESS_BEGIN();
   {
-    printf("RUNNING Timer Process...\n");
+    while(1)
+		{
+			PROCESS_WAIT_EVENT_UNTIL(
+				(ev == sensors_event)
+				&&
+				(data == &button_sensor));
+
+			leds_enabled = !leds_enabled;
+		}
   }
   PROCESS_END();
 }
