@@ -39,7 +39,7 @@ PROCESS_THREAD(process_leds, ev, data)
 {
   PROCESS_BEGIN();
   {
-    int counter_leds[3] = {TIME_BLUE, TIME_RED, TIME_GREEN};
+    uint8 counter_leds[3] = {TIME_BLUE, TIME_RED, TIME_GREEN};
     printf(" Contadores: %d [B], %d [R] , %d [G]\n",counter_leds[0],counter_leds[1],counter_leds[2]);
     //f_leds_init(&counter_leds);
 
@@ -53,7 +53,7 @@ PROCESS_THREAD(process_leds, ev, data)
       PROCESS_WAIT_EVENT();                /* WAIT EVENT */  
       if (etimer_expired(&et))             /* IF Timer Expired */
       {
-        f_leds_check(&counter_leds);         /* Do Tasks */
+        f_leds_check(&counter_leds[0]);       /* Do Tasks */
         etimer_reset(&et);                 /* Reset Timer */
       }
     }
