@@ -55,8 +55,15 @@ PROCESS_THREAD(process_leds, ev, data)
     if (etimer_expired(&et) && status_leds)             /* IF (Timer == 0) */
     {
       f_leds_check();                           /* DO */
-      printf("LEDs ENABLED | Timers Countdown: %d [B], %d [G] , %d [R]\n",counter_leds[0],counter_leds[2],counter_leds[1]);
+      printf(
+        "LEDs ENABLED | State: %c | Countdown: %d [B], %d [G] , %d [R]\n",
+        leds_get(), counter_leds[0], counter_leds[2],counter_leds[1]);
       etimer_reset(&et);                 /* RST Timer */
+    }
+    else
+    {
+      leds_off(LEDS_ALL);
+      printf("LEDs ENABLED | Timers Countdown: %d [B], %d [G] , %d [R]\n",counter_leds[0],counter_leds[2],counter_leds[1]);
     }
   }
   }
