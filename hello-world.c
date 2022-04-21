@@ -56,14 +56,14 @@ PROCESS_THREAD(process_leds, ev, data)
     {
       f_leds_check();                           /* DO */
       printf(
-        "LEDs ENABLED | State: %c | Countdown: %d [B], %d [G] , %d [R]\n",
+        "LEDs ENABLED | State: %d | Countdown: %d [B], %d [G] , %d [R]\n",
         leds_get(), counter_leds[0], counter_leds[2],counter_leds[1]);
       etimer_reset(&et);                 /* RST Timer */
     }
     else
     {
       leds_off(LEDS_ALL);
-      printf("LEDs ENABLED | Timers Countdown: %d [B], %d [G] , %d [R]\n",counter_leds[0],counter_leds[2],counter_leds[1]);
+      printf("LEDs DISABLED | Timers Freezed\n",counter_leds[0],counter_leds[2],counter_leds[1]);
     }
   }
   }
