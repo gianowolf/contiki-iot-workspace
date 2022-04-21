@@ -74,7 +74,7 @@ PROCESS_THREAD(process_timer, ev, data)
 				&&
 				(data == &button_sensor));
 
-			leds_enabled = !leds_enabled;
+			status_leds = !status_leds;
 		}
   }
   PROCESS_END();
