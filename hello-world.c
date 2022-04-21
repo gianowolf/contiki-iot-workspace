@@ -40,7 +40,7 @@ PROCESS_THREAD(process_leds, ev, data)
   PROCESS_BEGIN();
   {
     int counter_leds[3] = {TIME_BLUE, TIME_RED, TIME_GREEN};
-    printf(" Contadores: %d [B], %d [R] , %d [G]\n",counter[0],counter[1],counter[2]);
+    printf(" Contadores: %d [B], %d [R] , %d [G]\n",counter_leds[0],counter_leds[1],counter_leds[2]);
     //f_leds_init(&counter_leds);
 
     static struct etimer et;
