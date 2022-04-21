@@ -49,6 +49,7 @@ PROCESS_THREAD(process_leds, ev, data)
   printf("RUNNING LEDs Process...\n"); 
   etimer_set(&et, CLOCK_SECOND);        /* SET TIMER 1.00 s */
 
+  printf("%d %d %d", LEDS_BLUE, LEDS_RED, LEDS_GREEN);
     while(1)
     {
       PROCESS_WAIT_EVENT();                /* WAIT EVENT */  
@@ -84,9 +85,9 @@ uint8 f_leds_check()
     leds_toggle(LEDS_RED);
     counter_leds[1] = t_red;
   }
-  if(--counter_leds[1] == 0){
+  if(--counter_leds[2] == 0){
     leds_toggle(LEDS_GREEN);
-    counter_leds[1] = t_green;
+    counter_leds[2] = t_green;
   }
   return 0;
 }
