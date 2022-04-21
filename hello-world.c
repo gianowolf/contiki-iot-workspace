@@ -67,13 +67,11 @@ PROCESS_THREAD(process_timer, ev, data)
 {
   PROCESS_BEGIN();
   {
+    SENSORS_ACTIVATE(button_sensor);
     while(1)
 		{
-			PROCESS_WAIT_EVENT_UNTIL(
-				(ev == sensors_event)
-				&&
-				(data == &button_sensor));
-
+			PROCESS_WAIT_EVENT_UNTIL( (ev == sensors_event)
+				                     && (data == &button_sensor) );
 			status_leds = !status_leds;
 		}
   }
