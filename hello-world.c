@@ -79,19 +79,19 @@ uint8 f_leds_check(uint8* counter)
 					if(--counters[0] == 0)
 					{
 						leds_toggle(LEDS_BLUE);
-						counters[0] = T_BLUE;
+						counters[0] = TIME_BLUE;
 					}
 				
 					if(--counters[1] == 0)
 					{
 						leds_toggle(LEDS_RED);
-						counters[1] = T_BLUE;
+						counters[1] = TIME_BLUE;
 					}
 
 					if(--counters[2] == 0)
 					{
 						leds_toggle(LEDS_GREEN);
-						counters[2] = T_GREEN;
+						counters[2] = TIME_GREEN;
 					}
 
   return 0;
