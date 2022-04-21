@@ -10,16 +10,18 @@
 #include "dev/leds.h"
 #include "dev/button-sensor.h"
 
-/* Values */
-#define TIME_BLUE  3
-#define TIME_RED   5
-#define TIME_GREEN 7
-
 /* Utils */
 #include <stdio.h> /* For printf() */
 
 /* Types */
 typedef unsigned char uint8;
+
+/* Constants */
+#define N_LEDS 3
+
+/* Enumerations */
+enum times{ t_blue = 3, t_red = 5, t_green = 7};
+enum state{ enabled = 1, disabled = 0};
 
 /* Functions */
 uint8 f_leds_init(uint8* counter);
@@ -36,16 +38,14 @@ AUTOSTART_PROCESSES(&process_leds, &process_timer);
 
 /*---------------------------------------------------------------------------*/
 
-  uint8 counter_leds[3] = {TIME_BLUE, TIME_RED, TIME_GREEN};
+uint8 counter_leds[3] = {t_blue, t_red, t_green};
+uint8 status_leds = disabled;
 
-  
+
 PROCESS_THREAD(process_leds, ev, data)
 {
   PROCESS_BEGIN();
   {
-
-
-
   static struct etimer et;
   printf("RUNNING LEDs Process...\n"); 
   etimer_set(&et, CLOCK_SECOND);        /* SET TIMER 1.00 s */
@@ -56,24 +56,7 @@ PROCESS_THREAD(process_leds, ev, data)
 
       if (etimer_expired(&et))             /* IF Timer Expired */
       {
-        	if(--counter_leds[0] == 0)
-					{
-						leds_toggle(LEDS_BLUE);
-						counter_leds[0] = TIME_BLUE;
-					}
-				
-					if(--counter_leds[1] == 0)
-					{
-						leds_toggle(LEDS_RED);
-						counter_leds[1] = TIME_RED;
-					}
-
-					if(--counter_leds[2] == 0)
-					{
-						leds_toggle(LEDS_GREEN);
-						counter_leds[2] = TIME_GREEN;
-					}
-
+        f_leds_check();
         printf(" Contadores: %d [B], %d [R] , %d [G]\n",counter_leds[0],counter_leds[1],counter_leds[2]);
         etimer_reset(&et);                 /* Reset Timer */
       }
@@ -94,7 +77,23 @@ PROCESS_THREAD(process_timer, ev, data)
 
 uint8 f_leds_check(uint8* counters)
 {
-  printf("Check Leds\n");
+  if(--counter_leds[0] == 0)
+  {
+    leds_toggle(LEDS_BLUE);
+    counter_leds[0] = t_blue;
+  }
+
+  if(--counter_leds[1] == 0)
+  {
+    leds_toggle(LEDS_RED);
+    counter_leds[1] = t_red;
+  }
+
+  if(--counter_leds[2] == 0)
+  {
+    leds_toggle(LEDS_GREEN);
+    counter_leds[2] = t_green;
+  }
     
 
 
