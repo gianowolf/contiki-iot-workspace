@@ -37,15 +37,14 @@ AUTOSTART_PROCESSES(&process_leds, &process_timer);
 /*---------------------------------------------------------------------------*/
 PROCESS_THREAD(process_leds, ev, data)
 {
+  PROCESS_BEGIN();
+  {
+
   uint8 counter_leds[3] = {TIME_BLUE, TIME_RED, TIME_GREEN};
 
   static struct etimer et;
   printf("RUNNING LEDs Process...\n"); 
   etimer_set(&et, CLOCK_SECOND);        /* SET TIMER 1.00 s */
-
-  PROCESS_BEGIN();
-  {
-
 
     while(1)
     {
