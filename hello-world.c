@@ -24,7 +24,6 @@ enum times{ t_blue = 3, t_red = 5, t_green = 7};
 enum state{ enabled = 1, disabled = 0};
 
 /* Functions */
-uint8 f_leds_init(uint8* counter);
 uint8 f_leds_check();
 
 /* Shareds */
@@ -75,29 +74,19 @@ PROCESS_THREAD(process_timer, ev, data)
 }
 /*---------------------------------------------------------------------------*/
 
-uint8 f_leds_check(uint8* counters)
+uint8 f_leds_check()
 {
-  if(--counter_leds[0] == 0)
-  {
+  if(--counter_leds[0] == 0){
     leds_toggle(LEDS_BLUE);
     counter_leds[0] = t_blue;
   }
-
-  if(--counter_leds[1] == 0)
-  {
+  if(--counter_leds[1] == 0){
     leds_toggle(LEDS_RED);
     counter_leds[1] = t_red;
   }
-
-  if(--counter_leds[2] == 0)
-  {
+  if(--counter_leds[1] == 0){
     leds_toggle(LEDS_GREEN);
-    counter_leds[2] = t_green;
+    counter_leds[1] = t_green;
   }
   return 0;
-}
-
-rst_led(int i)
-{
-  printf(times[i]);
 }
